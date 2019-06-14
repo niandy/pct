@@ -87,8 +87,8 @@ def testBranch(nodeName, dlcVersion, stashCoverage, label, majorVersion, arch) {
     ws {
       deleteDir()
       def dlc = tool name: dlcVersion, type: 'openedge'
-      def jdk = tool name: 'JDK8', type: 'jdk'
-      def antHome = tool name: 'Ant 1.9', type: 'ant'
+      def jdk = tool name: 'Corretto 11', type: 'jdk'
+      def antHome = tool name: 'Ant 1.10', type: 'ant'
       unstash name: 'tests'
       withEnv(["TERM=xterm", "JAVA_HOME=${jdk}"]) {
         if (isUnix())
