@@ -174,16 +174,11 @@ public class OpenEdgeDocumentation115 extends PCT {
 
                 for (int i = 0; i < dsfiles.length; i++) {
                     File file = new File(fs.getDir(this.getProject()), dsfiles[i]);
+                    File destFile;
                     log("Generating AST for " + file.getAbsolutePath(), Project.MSG_VERBOSE);
                     int extPos = file.getName().lastIndexOf('.');
                     String ext = file.getName().substring(extPos);
                     boolean isClass = ".cls".equalsIgnoreCase(ext);
-                    
-                    if (this.encoding != null)
-                    {
-                        log("Encoding file " + file.getAbsolutePath(), Project.MSG_VERBOSE);
-                        encodeFile(file);
-                    }                    
 
                     ICompilationUnit root = astMgr.createAST(file, astContext, monitor, IASTManager.EXPAND_ON, IASTManager.DLEVEL_FULL);
                     if (isClass) {
@@ -191,17 +186,24 @@ public class OpenEdgeDocumentation115 extends PCT {
                         log("Executing AST ClassVisitor " + file.getAbsolutePath(), Project.MSG_VERBOSE);
                         root.accept(visitor);
                         if (visitor.getPackageName().length() == 0)
-                            visitor.toXML(new File(destDir, visitor.getClassName() + ".xml"));
+                            destFile = new File(destDir, visitor.getClassName() + ".xml");
                         else
-                            visitor.toXML(new File(destDir, visitor.getPackageName() + "."
-                                    + visitor.getClassName() + ".xml"));
+                            destFile = new File(destDir, visitor.getPackageName() + "."
+                                    + visitor.getClassName() + ".xml");
+                        visitor.toXML(destFile);
                     } else {
                         ProcedureDocumentationVisitor visitor = new ProcedureDocumentationVisitor();
                         log("Executing AST ProcedureVisitor " + file.getAbsolutePath(), Project.MSG_VERBOSE);
                         root.accept(visitor);
-                        File destFile = new File(destDir, dsfiles[i] + ".xml");
+                        destFile = new File(destDir, dsfiles[i] + ".xml");
                         destFile.getParentFile().mkdirs();
                         visitor.toXML(destFile);
+                    }
+                    
+                    if (this.encoding != null)
+                    {
+                        log("Encoding file " + destFile.getAbsolutePath(), Project.MSG_VERBOSE);
+                        encodeFile(destFile);
                     }
                 }
             }
