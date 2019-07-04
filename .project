@@ -27,4 +27,11 @@
 		<nature>com.openedge.pdt.text.progressNature</nature>
 		<nature>org.eclipse.wst.common.project.facet.core.nature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>java</name>
+			<type>2</type>
+			<location>C:/Users/niand/Progress/Developer Studio 4.9/workspace/pct/src/java</location>
+		</link>
+	</linkedResources>
 </projectDescription>

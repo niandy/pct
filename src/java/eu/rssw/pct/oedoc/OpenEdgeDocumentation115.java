@@ -16,7 +16,13 @@
  */
 package eu.rssw.pct.oedoc;
 
+import java.io.CharArrayWriter;
 import java.io.File;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -106,6 +112,33 @@ public class OpenEdgeDocumentation115 extends PCT {
 
         return this.propath;
     }
+    
+    private void encodeFile(File file) {
+        
+        if (this.encoding == null)
+            return;
+        
+        try {
+            InputStreamReader in = new InputStreamReader(new FileInputStream(file), this.encoding);
+            CharArrayWriter tmp = new CharArrayWriter();        
+    
+            int c;
+    
+            while ((c = in.read()) != -1) {
+                tmp.write(c);
+            }
+    
+            in.close();
+            
+            Writer out = new OutputStreamWriter(new FileOutputStream(file), "UTF-8");
+            out.write(tmp.toCharArray(), 0, tmp.size());
+           
+            tmp.close();
+            out.close();
+        } catch (IOException caught) {
+            throw new BuildException(caught);
+        }        
+    }
 
     /**
      * Do the work
@@ -145,6 +178,12 @@ public class OpenEdgeDocumentation115 extends PCT {
                     int extPos = file.getName().lastIndexOf('.');
                     String ext = file.getName().substring(extPos);
                     boolean isClass = ".cls".equalsIgnoreCase(ext);
+                    
+                    if (this.encoding != null)
+                    {
+                        log("Encoding file " + file.getAbsolutePath(), Project.MSG_VERBOSE);
+                        encodeFile(file);
+                    }                    
 
                     ICompilationUnit root = astMgr.createAST(file, astContext, monitor, IASTManager.EXPAND_ON, IASTManager.DLEVEL_FULL);
                     if (isClass) {

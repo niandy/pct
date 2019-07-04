@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" output="build/java" path="src/java"/>
-	<classpathentry kind="src" output="build/test" path="src/test"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
-	<classpathentry kind="lib" path="lib/ant.jar" sourcepath="lib/ant-src.jar"/>
-	<classpathentry kind="lib" path="lib/ant-launcher.jar" sourcepath="lib/ant-src.jar"/>
-	<classpathentry kind="lib" path="lib/testng-6.13.1.jar" sourcepath="lib/testng-6.13.1-sources.jar"/>
-	<classpathentry kind="lib" path="lib/jcommander-1.30.jar"/>
-	<classpathentry kind="lib" path="lib/guava.jar"/>
-	<classpathentry kind="lib" path="lib/gson-2.2.4.jar"/>
-	<classpathentry kind="lib" path="lib/ast.jar"/>
-	<classpathentry kind="lib" path="lib/ast-dependencies.jar"/>
-	<classpathentry kind="lib" path="lib/ini4j-0.5.1.jar"/>
-	<classpathentry kind="lib" path="lib/commonmark-0.11.0.jar"/>
+	<classpathentry kind="src" output="java" path="java"/>
+	<classpathentry kind="var" path="JRE_LIB" sourcepath="/JRE_SRC">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/C:/Progress/OpenEdge/jdk/bin/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/niand/Progress/Developer Studio 4.9/workspace/pct/lib/ant.jar"/>
+	<classpathentry kind="lib" path="C:/Users/niand/Progress/Developer Studio 4.9/workspace/pct/lib/jcommander-1.30.jar"/>
+	<classpathentry kind="lib" path="C:/Users/niand/Progress/Developer Studio 4.9/workspace/pct/lib/gson-2.2.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/niand/Progress/Developer Studio 4.9/workspace/pct/lib/ast.jar"/>
+	<classpathentry kind="lib" path="C:/Users/niand/Progress/Developer Studio 4.9/workspace/pct/lib/ast-dependencies.jar"/>
+	<classpathentry kind="lib" path="C:/Users/niand/Progress/Developer Studio 4.9/workspace/pct/lib/commonmark-0.11.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
