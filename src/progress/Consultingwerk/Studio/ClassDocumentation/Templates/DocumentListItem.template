@@ -1,5 +1,6 @@
 <tr>
-    <td class="list_item">
+    <td>
+        <img src="resources/@NODEIMG@.png" />
         <a href="@HREF@" class="@PAGETYPE@" target="DocumentDetails">@CLASSNAME@</a>
     </td>
 </tr>

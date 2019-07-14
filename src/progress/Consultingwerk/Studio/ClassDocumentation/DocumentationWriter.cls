@@ -19,7 +19,7 @@
     Purpose     : Generate a html documentation from xml-files. 
     Syntax      : 
     Description : 
-    Author(s)   : Sebastian Düngel / Consultingwerk Ltd.
+    Author(s)   : Sebastian Dï¿½ngel / Consultingwerk Ltd.
     Created     : Wed Oct 10 17:11:42 CEST 2012
     Notes       : 
   ----------------------------------------------------------------------*/
@@ -78,7 +78,7 @@ CLASS Consultingwerk.Studio.ClassDocumentation.DocumentationWriter
 		       cShortClass            = ENTRY (NUM-ENTRIES (pcClassName, ".":U), pcClassName, ".":U)
 		       .
 		
-		/* Sebastian Düngel, Consultingwerk Ltd. 14.05.2013
+		/* Sebastian Dï¿½ngel, Consultingwerk Ltd. 14.05.2013
            Fill base class parameter temptable*/
 		CREATE QUERY hParamQuery.
         hParamQuery:SET-BUFFERS (hParameterSourceBuffer).
@@ -110,7 +110,7 @@ CLASS Consultingwerk.Studio.ClassDocumentation.DocumentationWriter
             
             IF TableName <> "eProperty":U THEN DO ON ERROR UNDO, THROW: 
                                
-                /* Sebastian Düngel, Consultingwerk Ltd. 15.05.2013
+                /* Sebastian Dï¿½ngel, Consultingwerk Ltd. 15.05.2013
                    Normalizing the signature */
                 CREATE QUERY hDestQuery.
                 hDestQuery:SET-BUFFERS (hDestbuffer).
@@ -334,7 +334,7 @@ CLASS Consultingwerk.Studio.ClassDocumentation.DocumentationWriter
                    oCharacterList = Consultingwerk.Studio.ClassDocumentation.BaseClassListProvider:GetBaseClassList (cFullClassName, poParameter:SourceDir) 
                    iEnd           = oCharacterList:COUNT
                    .
-            /* Sebastian Düngel, Consultingwerk Ltd. 15.05.2013
+            /* Sebastian Dï¿½ngel, Consultingwerk Ltd. 15.05.2013
                Load all base classes of the class */   
             DO iCount = 0 TO oCharacterList:COUNT - 1:
 
@@ -703,7 +703,7 @@ CLASS Consultingwerk.Studio.ClassDocumentation.DocumentationWriter
                    lcBodyContent = "":U
                    .
             
-            /* Sebastian Düngel, Consultingwerk Ltd. 14.10.2013
+            /* Sebastian Dï¿½ngel, Consultingwerk Ltd. 14.10.2013
                Fix for the first namespace*/
             IF SUBSTRING (cPackageFile, 1, 1) = "/":U THEN
                     ASSIGN cPackageFile = SUBSTRING (cPackageFile, 2, LENGTH (cPackageFile)).
@@ -717,7 +717,7 @@ CLASS Consultingwerk.Studio.ClassDocumentation.DocumentationWriter
                 ASSIGN lcBodyContent = THIS-OBJECT:GetBodyFromPackage (lcPackageFile).
             END.
             
-             /* Sebastian Düngel, Consultingwerk Ltd. 14.10.2013
+             /* Sebastian Dï¿½ngel, Consultingwerk Ltd. 14.10.2013
                 Fix for the first namespace*/
             IF bTreeNode.NodeParentFullname <> "":U THEN 
                 ASSIGN cPackagename     = REPLACE (bTreeNode.NodeParentFullname, ".package.html":U , "":U)
@@ -1210,7 +1210,7 @@ CLASS Consultingwerk.Studio.ClassDocumentation.DocumentationWriter
 		FIX-CODEPAGE (lcResult) = "utf-8":U . 
         
 		FOR EACH eTreeNode WHERE eTreeNode.NodeParent = "":U ON ERROR UNDO, THROW:            
-            /* Sebastian Düngel, Consultingwerk Ltd. 17.04.2013
+            /* Sebastian Dï¿½ngel, Consultingwerk Ltd. 17.04.2013
                Create string without Substitute method then the
                Substitute function get a Stackoverflow error */   
             ASSIGN lcResult = lcResult + "<table class='parent_node'>":U +
@@ -1304,7 +1304,7 @@ CLASS Consultingwerk.Studio.ClassDocumentation.DocumentationWriter
                 END.
             END CASE.
                    
-            /* Sebastian Düngel, Consultingwerk Ltd. 17.04.2013
+            /* Sebastian Dï¿½ngel, Consultingwerk Ltd. 17.04.2013
                Create string without Substitute method then the
                Substitute function get a Stackoverflow error */ 
             ASSIGN lcNode  = "<table class='child_node parent":U + REPLACE (bTreeNode.NodeParent, ".":U, "":U) + " ":U + bTreeNode.NodeParentFullname + "'>":U +
@@ -1387,7 +1387,7 @@ CLASS Consultingwerk.Studio.ClassDocumentation.DocumentationWriter
 
                 ASSIGN cPackageFile = SUBSTITUTE ("&1/&2/package.html":U, REPLACE (cParentpackage, ".":U, "/":U), eTreeNode.NodeName).
                 
-                /* Sebastian Düngel, Consultingwerk Ltd. 27.06.2013
+                /* Sebastian Dï¿½ngel, Consultingwerk Ltd. 27.06.2013
                    Fix for the first namespace*/
                 IF SUBSTRING (cPackageFile, 1, 1) = "/":U THEN 
                     ASSIGN cPackageFile = SUBSTRING (cPackageFile, 2, LENGTH (cPackageFile)).
@@ -1667,9 +1667,13 @@ CLASS Consultingwerk.Studio.ClassDocumentation.DocumentationWriter
         FIND FIRST eUnit.
         
         IF eUnit.IsInterface = TRUE THEN  
-            ASSIGN lcResult = REPLACE (lcResult, "@PAGETYPE@":U, "interface":U).
+            ASSIGN
+                lcResult = REPLACE (lcResult, "@PAGETYPE@":U, "interface":U)
+                lcResult = REPLACE (lcResult, "@NODEIMG@":U, "handshake":U).
         ELSE
-            ASSIGN lcResult = REPLACE (lcResult, "@PAGETYPE@":U, "class":U).
+            ASSIGN
+                lcResult = REPLACE (lcResult, "@PAGETYPE@":U, "class":U)
+                lcResult = REPLACE (lcResult, "@NODEIMG@":U, "objects":U).
                
         RETURN lcResult.
        

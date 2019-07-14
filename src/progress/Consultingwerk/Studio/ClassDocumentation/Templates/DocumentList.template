@@ -20,6 +20,8 @@
             	</tr>
     		</tbody>
 		</table>
-		@CONTENT@
+		<table>
+		    @CONTENT@
+		</table>
 	</BODY>
 </HTML>

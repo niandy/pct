@@ -16,7 +16,6 @@
  */
 package eu.rssw.pct.oedoc;
 
-import java.io.CharArrayWriter;
 import java.io.File;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
