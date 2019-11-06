@@ -4,7 +4,7 @@
 
   <property name="sonar.projectKey" value="eu.rssw.pct:PCT" />
   <property name="sonar.projectName" value="PCT" />
-  <property name="sonar.projectVersion" value="213.pre" />
+  <property name="sonar.projectVersion" value="214.pre" />
   <property name="sonar.sources" value="src/java,src/progress" />
   <property name="sonar.exclusions" value="src/progress/Consultingwerk/**/*,src/progress/**/dump_inc*.p,src/progress/**/_dmp*.p,src/progress/prodict/**/*,src/progress/adecomm/*,src/progress/web/method/*" />
   <property name="sonar.sourceEncoding" value="iso8859-1" />
@@ -46,7 +46,7 @@
     <unzip src="oe-profiler-data-11.7-Win.zip" dest="profiler/progress">
       <flattenmapper />
     </unzip>
-    <unzip src="oe-profiler-data-12.0-Win.zip" dest="profiler/progress" overwrite="true">
+    <unzip src="oe-profiler-data-12.1-Win.zip" dest="profiler/progress" overwrite="true">
       <flattenmapper />
     </unzip>
     <sonar:sonar />
